@@ -4,7 +4,7 @@ import { Header } from './Header';
 import { StatsCard } from './StatsCard';
 import { ActivitiesChart } from './ActivitiesChart';
 import { ProductsChart }  from './ProductsChart';
-import { Addprofile } from './Addprofile';
+import { AddProfile } from './Addprofile';
 import { ProfilePopup } from './ProfilePopup';
 import { activityData, productData, statsCards } from './data';
 import Profile from './Profile';
