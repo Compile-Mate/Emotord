@@ -12,35 +12,40 @@ const LoginPage = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate(); 
   const signinwithgoogle = useGoogleLogin({
-    onSuccess: async (tokenResponse) => {
-      try {
-        console.log("Google login success:", tokenResponse);
-  
-        // Fetch user info using the access token
-        const userInfoResponse = await fetch(
-          "https://www.googleapis.com/oauth2/v3/userinfo",
-          {
-            headers: {
-              Authorization: `Bearer ${tokenResponse.access_token}`,
-            },
-          }
-        );
-  
-        const userData = await userInfoResponse.json();
-        console.log("User Info:", userData);
-  
-        if (userData.email) {
-          localStorage.setItem("email", userData.email); // Store email in localStorage
-          navigate("/dashboard"); // Redirect to dashboard
+  onSuccess: async (tokenResponse) => {
+    try {
+      console.log("Google login success:", tokenResponse);
+
+      // Send the Google token to your backend
+      const backendResponse = await fetch(
+        "https://emotorad-assignment-lsss.onrender.com/api/auth/google",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: tokenResponse.access_token }),
         }
-      } catch (error) {
-        console.error("Error fetching Google user info:", error);
+      );
+
+      const backendData = await backendResponse.json();
+      console.log("Backend Response:", backendData);
+
+      if (backendData.email) {
+        localStorage.setItem("email", backendData.email); // Store email in localStorage
+        navigate("/dashboard"); // Redirect to dashboard
+      } else {
+        console.error("Google authentication failed:", backendData);
       }
-    },
-    onError: () => {
-      console.log("Login Failed");
-    },
-  });
+    } catch (error) {
+      console.error("Error processing Google login:", error);
+    }
+  },
+  onError: () => {
+    console.log("Login Failed");
+  },
+});
+
 
   useEffect(() => {
     // Check if email exists in localStorage, if yes, navigate to dashboard
