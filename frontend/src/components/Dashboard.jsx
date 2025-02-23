@@ -3,7 +3,7 @@ import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { StatsCard } from './StatsCard';
 import { ActivitiesChart } from './ActivitiesChart';
-import  {ProductsChart}  from './ProductsChart';
+import { ProductsChart }  from './ProductsChart';
 import { AddProfile } from './AddProfile';
 import { ProfilePopup } from './ProfilePopup';
 import { activityData, productData, statsCards } from './data';
