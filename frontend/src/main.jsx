@@ -7,7 +7,8 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <GoogleOAuthProvider clientId="1020995955944-1op423sd7qa9afm9jgsikulm2vun40j5.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="1020995955944-1op423sd7qa9afm9jgsikulm2vun40j5.apps.googleusercontent.com"
+       redirectUri="https://emotorad-assignment-lsss.onrender.com/api/auth/google">
     <App />
     </GoogleOAuthProvider>
   </StrictMode>,
